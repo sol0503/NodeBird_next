@@ -1,7 +1,7 @@
 import AppLayout from "../components/AppLayout";
 
 const Home = () => {
-  return <AppLayout>hello,Next!</AppLayout>;
+  return <AppLayout></AppLayout>;
 };
 
 export default Home;

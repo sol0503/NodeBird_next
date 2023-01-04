@@ -6,7 +6,7 @@ const Singup = () => {
       <Head>
         <title>회원가입 | NodeBird</title>
       </Head>
-      <AppLayout>회원가입</AppLayout>;
+      <AppLayout></AppLayout>
     </>
   );
 };
