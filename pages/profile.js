@@ -1,6 +1,7 @@
 import AppLayout from "../components/AppLayout";
 import Head from "next/head";
 import NicknameEditFrom from "../components/NicknameEditFrom";
+import FollowList from "../components/FollowList";
 const Profile = () => {
   return (
     <>
