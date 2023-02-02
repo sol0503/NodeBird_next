@@ -5,12 +5,12 @@ import { PlusOutlined } from "@ant-design/icons";
 import ImagesZoom from "./ImagesZoom";
 
 const PostImages = ({ images }) => {
-  const [showImagesZoom, setShpwImagesZoom] = useState(false);
+  const [showImagesZoom, setShowImagesZoom] = useState(false);
   const onZoom = useCallback(() => {
-    setShpwImagesZoom(true);
+    setShowImagesZoom(true);
   }, []);
   const onClose = useCallback(() => {
-    setShpwImagesZoom(false);
+    setShowImagesZoom(false);
   }, []);
 
   if (images.length === 1) {

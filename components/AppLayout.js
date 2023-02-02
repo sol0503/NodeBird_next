@@ -4,17 +4,32 @@ import { Input, Menu, Row, Col } from "antd";
 import UserProfile from "../components/UserProfile";
 import LoginForm from "../components/LoginFrom";
 
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 
 const SearchInput = styled(Input.Search)`
   vertical-align: middle;
 `;
+const Global = createGlobalStyle`
+.ant-row{
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+.ant-col:first-child{
+  padding-left: 0 !important;
+}
+.ant-col:last-child{
+  padding-right: 0 o !important;
+}
+`;
+//아래 스크콜바 생성이 마음에 안들경우 해당 코드작성하면 버그 해결
+
 const AppLayout = ({ children }) => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   // ==const { isLoggedIn } = useSelector((state) => state.user);
   return (
     <div>
+      <Global />
       <Menu mode="horizontal">
         <Menu.Item>
           <Link href={"/"}>
