@@ -2,7 +2,8 @@ import { applyMiddleware, compose, createStore } from "redux";
 import { createWrapper } from "next-redux-wrapper";
 import reducer from "../reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
-import thunkMiddleware from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "../sagas";
 
 const loggerMiddleware =
   ({ dispatch, getState }) =>
@@ -16,7 +17,8 @@ const loggerMiddleware =
   };
 
 const configureStore = () => {
-  const middlewares = [thunkMiddleware, loggerMiddleware];
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [sagaMiddleware, loggerMiddleware];
   const enhancer =
     process.env.NODE_ENV === "production"
       ? compose(applyMiddleware(...middlewares))
@@ -26,6 +28,7 @@ const configureStore = () => {
   //   type: "CHANGE_NICKNAME",
   //   data: "boogicho",
   // });
+  store.sagaTask = sagaMiddleware.run(rootSaga);
   return store;
 };
 const wrapper = createWrapper(configureStore, {
