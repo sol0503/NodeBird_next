@@ -1,5 +1,14 @@
 import axios from "axios";
 import { delay, put, takeLatest, all, fork } from "redux-saga/effects";
+import {
+  ADD_POST_SUCCESS,
+  ADD_POST_FAILURE,
+  ADD_POST_REQUEST,
+  ADD_COMMENT_FAILURE,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
+} from "../reducers/post";
+
 function addPostAPI(data) {
   return axios.post("/api/post", data);
 }
@@ -10,7 +19,6 @@ function* addPost(action) {
     yield delay(1000);
     yield put({
       type: ADD_POST_SUCCESS,
-      data: result.data,
     });
   } catch (err) {
     yield put({
@@ -20,10 +28,33 @@ function* addPost(action) {
   }
 }
 
+function addCommentAPI(data) {
+  return axios.post(`/api/post/${data.postId}/comment`, data);
+}
+
+function* addComment(action) {
+  try {
+    // const result = yield call(addCommentAPI, action.data);
+    yield delay(1000);
+    yield put({
+      type: ADD_COMMENT_SUCCESS,
+    });
+  } catch (err) {
+    yield put({
+      type: ADD_COMMENT_FAILURE,
+      data: err.response.data,
+    });
+  }
+}
+
 function* watchAddPost() {
-  yield takeLatest("ADD_OUT_REQUEST", addPost);
+  yield takeLatest(ADD_OUT_REQUEST, addPost);
+}
+function* watchAddComment() {
+  yield takeLatest(ADD_COMMENT_REQUEST, addComment);
 }
 
 export default function* postSaga() {
   yield all([fork(watchAddPost)]);
+  yield all([fork(watchAddComment)]);
 }
