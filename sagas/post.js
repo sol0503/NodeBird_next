@@ -10,7 +10,7 @@ import {
 } from "../reducers/post";
 
 function addPostAPI(data) {
-  return axios.post("/api/post", data);
+  // return axios.post("/api/post", data);
 }
 
 function* addPost(action) {
@@ -28,8 +28,12 @@ function* addPost(action) {
   }
 }
 
+function* watchAddPost() {
+  yield takeLatest(ADD_COMMENT_REQUEST, addPost);
+}
+
 function addCommentAPI(data) {
-  return axios.post(`/api/post/${data.postId}/comment`, data);
+  // return axios.post(`/api/post/${data.postId}/comment`, data);
 }
 
 function* addComment(action) {

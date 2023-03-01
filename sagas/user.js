@@ -2,7 +2,7 @@ import { all, fork } from "redux-saga/effects";
 import {
   LOG_IN_SUCCESS,
   LOG_OUT_SUCCESS,
-  LOG_OUT_REQUEST,
+  LOG_IN_REQUEST,
   LOG_OUT_FAILURE,
   LOG_OUT_REQUEST,
   LOG_IN_FAILURE,

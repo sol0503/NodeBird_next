@@ -25,7 +25,7 @@ const Global = createGlobalStyle`
 //아래 스크콜바 생성이 마음에 안들경우 해당 코드작성하면 버그 해결
 
 const AppLayout = ({ children }) => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const { me } = useSelector((state) => state.user);
   // ==const { isLoggedIn } = useSelector((state) => state.user);
   return (
     <div>
@@ -52,7 +52,7 @@ const AppLayout = ({ children }) => {
       </Menu>
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {isLoggedIn ? <UserProfile /> : <LoginForm />}
+          {me ? <UserProfile /> : <LoginForm />}
         </Col>
         <Col xs={24} md={12}>
           {children}
